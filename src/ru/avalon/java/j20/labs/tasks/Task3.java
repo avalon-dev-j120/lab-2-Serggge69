@@ -22,7 +22,7 @@ public class Task3 implements Task {
         File input = new File("assets/countries.txt");
         File output = new File("countries_buffered_mode_output.txt");
         Collection<String> lines = read(input);
-        write(output, lines);
+        //write(output, lines);
 
         /*
          * TODO(Студент): Выполнить задание №3

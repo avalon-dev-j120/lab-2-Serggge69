@@ -4,6 +4,7 @@ import ru.avalon.java.j20.labs.Task;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.*;
 
 /**
  * Задание №1
@@ -21,8 +22,9 @@ public class Task1 implements Task {
         File input = new File("assets/countries.txt");
         File output = new File("countries_binary_mode_output.txt");
         String text = read(input);
+        System.out.println(text);
         write(output, text);
-
+        
         /*
          * TODO(Студент): Выполнить задание №1
          *
@@ -42,7 +44,19 @@ public class Task1 implements Task {
          * 3. С использованием отладчика проверить корректность работы программы.
          */
     }
-
+    
+        private String read(File file) throws IOException {
+        try (InputStream stream = new FileInputStream(file)){
+            ByteArrayOutputStream memory = new ByteArrayOutputStream();
+            byte[] buffer = new byte[20];
+            int length;
+            while ( (length = stream.read(buffer)) != -1 ){
+                memory.write(buffer, 0, length);
+            }
+            return memory.toString();
+        }    
+    }
+    
     /**
      * Выполняет чтение указанного файла в двоичном режиме.
      *
@@ -53,9 +67,6 @@ public class Task1 implements Task {
      * @return содержимое файла в виде текста.
      * @throws IOException в случае ошибок ввода-вывода.
      */
-    private String read(File file) throws IOException {
-        throw new UnsupportedOperationException("Not implement yet!");
-    }
 
     /**
      * Выполняет запись текстоых данных в файл в двоичном
@@ -66,6 +77,9 @@ public class Task1 implements Task {
      * @throws IOException в случае ошибок ввода-вывода.
      */
     private void write(File file, String text) throws IOException {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        try (OutputStream stream = new FileOutputStream(file);
+            Writer writer = new OutputStreamWriter(stream)){
+            writer.write(text);
+        }
     }
 }
