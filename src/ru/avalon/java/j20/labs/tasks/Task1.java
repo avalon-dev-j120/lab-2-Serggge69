@@ -22,7 +22,7 @@ public class Task1 implements Task {
         File input = new File("assets/countries.txt");
         File output = new File("countries_binary_mode_output.txt");
         String text = read(input);
-        System.out.println(text);
+        //System.out.println(text);
         write(output, text);
         
         /*
@@ -46,14 +46,16 @@ public class Task1 implements Task {
     }
     
         private String read(File file) throws IOException {
-        try (InputStream stream = new FileInputStream(file)){
-            ByteArrayOutputStream memory = new ByteArrayOutputStream();
+        
+            try (InputStream input = new FileInputStream(file);
+            ByteArrayOutputStream output = new ByteArrayOutputStream()){
             byte[] buffer = new byte[20];
             int length;
-            while ( (length = stream.read(buffer)) != -1 ){
-                memory.write(buffer, 0, length);
+            while ( (length = input.read(buffer)) != -1 ){
+                output.write(buffer, 0, length);
             }
-            return memory.toString();
+            byte[] bytes = output.toByteArray();
+            return new String(bytes);
         }    
     }
     

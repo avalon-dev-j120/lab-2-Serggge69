@@ -27,7 +27,7 @@ public class Task2 implements Task {
         File input = new File("assets/countries.txt");
         File output = new File("countries_text_mode_output.txt");
         String text = read(input);
-        System.out.println(text);
+        //System.out.println(text);
         write(output, text);
 
         /*
