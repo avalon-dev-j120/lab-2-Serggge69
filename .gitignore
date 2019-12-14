@@ -538,3 +538,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/src/nbproject/private/
